@@ -27,10 +27,10 @@
   --text-button-secondary-default: var(--p-color-abyss);
   --text-button-secondary-hovered: var(--p-color-paper);
   --text-button-secondary-active: var(--p-color-paper);
-  --surface-inverse-button-primary-default: var(--p-color-citron);
+  --surface-inverse-button-primary-default: var(--p-color-coral);
   --surface-inverse-button-primary-hovered: var(--p-color-paper);
   --surface-inverse-button-primary-active: var(--p-color-slate);
-  --border-inverse-button-primary-default: var(--p-color-citron);
+  --border-inverse-button-primary-default: var(--p-color-coral);
   --border-inverse-button-primary-hovered: var(--p-color-paper);
   --border-inverse-button-primary-active: var(--p-color-slate);
   --text-inverse-button-primary-default: var(--p-color-abyss);
