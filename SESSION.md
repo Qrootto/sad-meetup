@@ -6,8 +6,8 @@
 
 ## Задача и ветка
 
-Задача 1 — проект, дизайн-система, витрина-редактор (2026-10-29). Ветка
-`feature/design-system` → слить в `main` в конце задачи.
+Задача 1 — проект, дизайн-система, витрина-редактор (2026-10-29). Закрыта, влита в
+`main` (fast-forward), ветка удалена.
 
 ## Где остановились
 
@@ -27,6 +27,7 @@
 
 ## Последние коммиты
 
+- `911288f` feat(design-system): add primitives, tokens, scales, text styles, base components and library editor
 - `29f3f14` chore: bootstrap project from level-2-personal template
 
 ## Решения
