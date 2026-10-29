@@ -6,8 +6,7 @@
 
 ## Задача и ветка
 
-Задача 2 — элементы, блоки, лендинг (2026-10-29). Ветка `feature/landing` →
-влить в `main` в конце задачи.
+Задача 2 — элементы, блоки, лендинг (2026-10-29). Закрыта, влита в `main`, ветка удалена.
 
 ## Где остановились
 
@@ -29,6 +28,7 @@
 
 ## Последние коммиты
 
+- `fbf091c` feat(landing): add block elements, landing blocks and assembled landing page
 - `853b48b` fix(vite): keep library redirect hooks from returning the middleware
 - `fc431bf` docs(session): design system task closed and merged
 - `911288f` feat(design-system): add primitives, tokens, scales, text styles, base components and library editor
