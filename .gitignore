@@ -1,0 +1,49 @@
+# === Зависимости ===
+node_modules/
+
+# === Сборка ===
+dist/
+build/
+.next/
+out/
+.cache/
+.parcel-cache/
+
+# === Локальные настройки IDE и редакторов ===
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# === macOS ===
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# === Чувствительные данные ===
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.token
+
+# === Логи ===
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Локальные настройки Claude Code ===
+.claude/settings.local.json
+.claude/cache/
+.claude/sessions/
+
+# === Тяжёлые исходники дизайна ===
+# (раскомментируй если в проекте лежат большие файлы дизайна)
+# *.fig
+# *.sketch
+# *.afdesign
+# *.psd
+# *.ai
