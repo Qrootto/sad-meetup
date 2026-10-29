@@ -1,0 +1,36 @@
+/* Основа страницы: сброс, фон, основной текст, скругления. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-synthesis: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body {
+  background-color: var(--surface-bg-primary); /* фон страницы */
+  color: var(--text-neutral-primary); /* основной текст на странице */
+  font-family: var(--font-body-family);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* Скругления — squircle (глобальное правило 5.6). Где corner-shape не
+   поддерживается, остаётся обычный border-radius того же шага. */
+.squircle {
+  corner-shape: squircle;
+}

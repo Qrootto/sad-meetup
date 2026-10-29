@@ -1,0 +1,40 @@
+/* @title Тег
+   @description Короткая метка. Светлый — тип события в программе, inverse — факты в хиро и «Чаще всего берут» у акцентного тарифа. */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-style: solid;
+  white-space: nowrap;
+  padding-block: var(--space-3xs); /* отступ текста от верха и низа */
+  padding-inline: var(--space-2xs); /* отступ текста от левого и правого края */
+  border-width: var(--stroke-s); /* толщина обводки */
+  border-radius: var(--radius-full); /* скругление углов */
+  font-family: var(--font-caption-family); /* текстовый стиль надписи */
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: var(--font-caption-tracking);
+}
+
+.tag--neutral {
+  border-color: var(--border-tag-neutral);
+  color: var(--text-tag-neutral);
+}
+
+.tag--accent {
+  background-color: var(--surface-tag-accent);
+  border-color: var(--border-tag-accent);
+  color: var(--text-tag-accent);
+}
+
+.tag--inverse-neutral {
+  border-color: var(--border-inverse-tag-neutral);
+  color: var(--text-inverse-tag-neutral);
+}
+
+.tag--inverse-accent {
+  background-color: var(--surface-inverse-tag-accent);
+  border-color: var(--border-inverse-tag-accent);
+  color: var(--text-inverse-tag-accent);
+}

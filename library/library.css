@@ -1,0 +1,434 @@
+/* Витрина: только токены системы, своих сырых значений нет.
+   Структурные значения раскладки (fr, 100%, 100vh) — не дизайн-значения. */
+
+.lib-root {
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: var(--font-caption-tracking);
+}
+
+.lib {
+  display: grid;
+  grid-template-columns: var(--width-nav) minmax(0, 1fr);
+  grid-template-rows: var(--size-l) minmax(0, 1fr);
+  block-size: 100vh;
+}
+
+.lib a {
+  color: inherit;
+}
+
+.lib code {
+  font-family: inherit;
+}
+
+.lib-muted {
+  color: var(--text-neutral-secondary);
+}
+
+/* Панель */
+.lib-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding-inline: var(--space-m);
+  border-block-end: var(--stroke-s) solid var(--border-neutral-primary);
+}
+.lib-bar__title {
+  margin-inline-end: auto;
+  text-decoration: none;
+  font-family: var(--font-small-family);
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-small-tracking);
+}
+.lib-bar__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.lib-select,
+.lib-btn {
+  block-size: var(--size-s);
+  padding-inline: var(--space-2xs);
+  border: var(--stroke-s) solid var(--border-neutral-primary);
+  border-radius: var(--radius-s);
+  corner-shape: squircle;
+  background-color: var(--surface-bg-primary);
+  color: var(--text-neutral-primary);
+  font: inherit;
+  cursor: pointer;
+}
+.lib-select {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+.lib-select:focus-visible,
+.lib-btn:focus-visible,
+.lib a:focus-visible,
+.lib summary:focus-visible {
+  outline: var(--stroke-m) solid var(--border-focus);
+  outline-offset: var(--stroke-m);
+}
+
+/* Навигация */
+.lib-nav {
+  overflow: auto;
+  padding: var(--space-m);
+  border-inline-end: var(--stroke-s) solid var(--border-neutral-primary);
+  font-family: var(--font-small-family);
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-small-weight);
+  letter-spacing: var(--font-small-tracking);
+}
+.lib-nav__group {
+  margin-block: var(--space-m) var(--space-2xs);
+  color: var(--text-neutral-secondary);
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+}
+.lib-nav__group:first-child {
+  margin-block-start: 0;
+}
+.lib-nav__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding-block: var(--space-3xs);
+  text-decoration: none;
+  color: var(--text-neutral-secondary);
+}
+.lib-nav__item[aria-current="page"],
+.lib-nav__item:hover {
+  color: var(--text-neutral-primary);
+}
+.lib-nav__item--nested {
+  padding-inline-start: var(--space-s);
+}
+.lib-nav__empty {
+  color: var(--text-neutral-secondary);
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+}
+.lib-dot {
+  color: var(--border-focus);
+}
+
+/* Раздел */
+.lib-main {
+  overflow: auto;
+  padding: var(--space-l) var(--space-xl);
+}
+.lib-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-s);
+  margin-block-end: var(--space-m);
+  font-family: var(--font-h3-family);
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+}
+.lib-title code {
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+}
+.lib-lead {
+  margin-block-end: var(--space-s);
+}
+.lib-h {
+  margin-block-end: var(--space-s);
+  font-family: var(--font-small-family);
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-small-tracking);
+}
+.lib-col-title {
+  margin-block: var(--space-s) var(--space-2xs);
+  color: var(--text-neutral-secondary);
+}
+
+/* Две колонки основы */
+.lib-split {
+  display: grid;
+  grid-template-columns: var(--width-nav) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.lib-split__left {
+  position: sticky;
+  top: 0;
+}
+.lib-split__hint {
+  margin-block-end: var(--space-s);
+  color: var(--text-neutral-secondary);
+}
+.lib-prim {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-block-size: var(--size-s);
+  padding-block: var(--space-3xs);
+  padding-inline: var(--space-2xs);
+  border-block-end: var(--stroke-s) solid var(--border-neutral-primary);
+  cursor: pointer;
+}
+.lib-prim__name {
+  display: flex;
+  flex: 1;
+  gap: var(--space-2xs);
+}
+.lib-prim.is-picked {
+  outline: var(--stroke-m) solid var(--border-focus);
+}
+.lib-picker {
+  inline-size: var(--size-s);
+  block-size: var(--size-s);
+  padding: 0;
+  border: var(--stroke-s) solid var(--border-neutral-primary);
+  border-radius: var(--radius-s);
+  background: none;
+  cursor: pointer;
+}
+
+.lib-group {
+  margin-block-end: var(--space-s);
+}
+.lib-group > summary {
+  padding-block: var(--space-2xs);
+  cursor: pointer;
+  font-family: var(--font-small-family);
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-h3-weight);
+}
+.lib-group .lib-group {
+  margin-inline-start: var(--space-s);
+}
+.lib-group .lib-group > summary {
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+  font-weight: var(--font-caption-weight);
+  color: var(--text-neutral-secondary);
+}
+
+.lib-row {
+  display: grid;
+  grid-template-columns: var(--size-s) minmax(0, 3fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 2fr);
+  align-items: center;
+  gap: var(--space-xs);
+  min-block-size: var(--size-s);
+  padding-block: var(--space-3xs);
+  padding-inline: var(--space-2xs);
+  border-block-end: var(--stroke-s) solid var(--border-neutral-primary);
+}
+.lib-row:not(:has(.lib-swatch)) {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 2fr);
+}
+.lib-row--usage {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) !important;
+}
+.lib-row.is-changed .lib-row__name::after,
+.lib-prim.is-changed code::after,
+.lib-prop.is-changed code::after {
+  content: " ●";
+  color: var(--border-focus);
+}
+.is-probing [data-uses]:not(.is-hit) {
+  color: var(--text-neutral-secondary);
+}
+.is-probing [data-uses].is-hit {
+  box-shadow: inset var(--stroke-m) 0 var(--border-focus);
+}
+.is-filtering [data-uses]:not(.is-hit) {
+  display: none;
+}
+
+.lib-swatch {
+  display: inline-block;
+  inline-size: var(--size-s);
+  block-size: var(--size-s);
+  border: var(--stroke-s) solid var(--border-neutral-primary);
+  border-radius: var(--radius-s);
+}
+.lib-swatch--small {
+  inline-size: var(--space-s);
+  block-size: var(--space-s);
+  flex: none;
+}
+.lib-usage > summary {
+  cursor: pointer;
+  list-style: none;
+}
+.lib-usage ul {
+  margin-block-start: var(--space-3xs);
+  padding-inline-start: var(--space-s);
+}
+.lib-sample {
+  padding-block: var(--space-s);
+  border-block-end: var(--stroke-s) solid var(--border-neutral-primary);
+}
+
+/* Экран компонента */
+.lib-links {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-3xs) var(--space-s);
+  margin-block-end: var(--space-l);
+}
+.lib-links dt {
+  color: var(--text-neutral-secondary);
+}
+.lib-links dd {
+  margin: 0;
+}
+.lib-common {
+  padding-block: var(--space-m);
+  border-block-start: var(--stroke-s) solid var(--border-neutral-primary);
+}
+.lib-props {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-xl);
+}
+.lib-prop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-xs);
+  padding-block: var(--space-2xs);
+  border-block-end: var(--stroke-s) solid var(--border-neutral-primary);
+}
+.lib-prop__label {
+  display: block;
+  color: var(--text-neutral-secondary);
+}
+.lib-variant {
+  padding-block: var(--space-m);
+  border-block-start: var(--stroke-s) solid var(--border-neutral-primary);
+}
+.lib-variants-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  border-block-start: var(--stroke-s) solid var(--border-neutral-primary);
+}
+.lib-variant--inline {
+  border-block-start: none;
+}
+.lib-scene {
+  display: inline-flex;
+  max-inline-size: 100%;
+  padding: var(--space-l);
+  border: var(--stroke-s) solid var(--border-neutral-primary);
+  border-radius: var(--radius-m);
+  background-color: var(--surface-bg-primary);
+  color: var(--text-neutral-primary);
+}
+.lib-scene--inverse {
+  border-color: var(--surface-inverse-bg-primary);
+  background-color: var(--surface-inverse-bg-primary);
+  color: var(--text-inverse-neutral-primary);
+}
+.lib-scene--wide {
+  display: block;
+  overflow-x: auto;
+}
+.lib-scene--wide .container {
+  inline-size: var(--width-container);
+}
+.lib-grid-column {
+  block-size: var(--size-l);
+  background-color: var(--surface-bg-secondary);
+}
+.lib-states {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xl);
+}
+.lib-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin: 0;
+}
+.lib-tokens {
+  margin-block-start: var(--space-s);
+}
+.lib-tokens > summary {
+  cursor: pointer;
+  list-style: none;
+  color: var(--text-neutral-secondary);
+}
+.lib-table {
+  margin-block-start: var(--space-xs);
+  border-collapse: collapse;
+}
+.lib-table th,
+.lib-table td {
+  padding: var(--space-2xs) var(--space-xs);
+  border-block-end: var(--stroke-s) solid var(--border-neutral-primary);
+  text-align: start;
+  vertical-align: top;
+  font-weight: inherit;
+}
+.lib-table th {
+  color: var(--text-neutral-secondary);
+}
+.lib-entry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  white-space: nowrap;
+}
+.lib-entry + .lib-entry {
+  margin-block-start: var(--space-3xs);
+}
+.is-flash {
+  outline: var(--stroke-m) solid var(--border-focus);
+  outline-offset: var(--stroke-m);
+}
+
+/* Изменения */
+.lib-dialog {
+  inline-size: var(--width-container);
+  max-inline-size: 100%;
+  padding: var(--space-l);
+  border: var(--stroke-s) solid var(--border-neutral-primary);
+  border-radius: var(--radius-m);
+  background-color: var(--surface-bg-primary);
+  color: var(--text-neutral-primary);
+}
+.lib-dialog__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lib-changes {
+  padding-inline-start: var(--space-s);
+}
+.lib-change {
+  padding-block: var(--space-3xs);
+}
+.lib-markdown {
+  inline-size: 100%;
+  min-block-size: var(--space-4xl);
+  padding: var(--space-2xs);
+  border: var(--stroke-s) solid var(--border-neutral-primary);
+  border-radius: var(--radius-s);
+  background-color: var(--surface-bg-primary);
+  color: var(--text-neutral-primary);
+  font: inherit;
+}

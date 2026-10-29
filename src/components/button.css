@@ -1,0 +1,103 @@
+/* @title Кнопка
+   @description Действие на странице. На светлых поверхностях — только secondary с обводкой, на тёмных — inverse primary и inverse secondary. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  block-size: var(--size-m); /* высота кнопки */
+  padding-inline: var(--space-m); /* отступ текста от левого и правого края */
+  border-width: var(--stroke-s); /* толщина обводки */
+  border-radius: var(--radius-full); /* скругление углов */
+  font-family: var(--font-body-family); /* текстовый стиль надписи */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--hover-out); /* длительность возврата из hovered и active */
+  transition-timing-function: var(--hover-easing); /* кривая возврата из hovered и active */
+}
+
+/* Вход в hovered и active — мгновенно (глобальное правило 5.2) */
+.button:hover,
+.button:active {
+  transition: none;
+}
+
+.button:focus-visible,
+.button[data-state="focus"] {
+  outline-style: solid;
+  outline-width: var(--stroke-m); /* толщина кольца фокуса */
+  outline-offset: var(--stroke-m); /* зазор между кнопкой и кольцом фокуса */
+}
+
+.button--secondary {
+  background-color: var(--surface-button-secondary-default);
+  border-color: var(--border-button-secondary-default);
+  color: var(--text-button-secondary-default);
+}
+.button--secondary:hover:not(.no-hover),
+.button--secondary[data-state="hovered"] {
+  background-color: var(--surface-button-secondary-hovered);
+  border-color: var(--border-button-secondary-hovered);
+  color: var(--text-button-secondary-hovered);
+}
+.button--secondary:active,
+.button--secondary[data-state="active"] {
+  background-color: var(--surface-button-secondary-active);
+  border-color: var(--border-button-secondary-active);
+  color: var(--text-button-secondary-active);
+}
+.button--secondary:focus-visible,
+.button--secondary[data-state="focus"] {
+  outline-color: var(--border-focus);
+}
+
+.button--inverse-primary {
+  background-color: var(--surface-inverse-button-primary-default);
+  border-color: var(--border-inverse-button-primary-default);
+  color: var(--text-inverse-button-primary-default);
+}
+.button--inverse-primary:hover:not(.no-hover),
+.button--inverse-primary[data-state="hovered"] {
+  background-color: var(--surface-inverse-button-primary-hovered);
+  border-color: var(--border-inverse-button-primary-hovered);
+  color: var(--text-inverse-button-primary-hovered);
+}
+.button--inverse-primary:active,
+.button--inverse-primary[data-state="active"] {
+  background-color: var(--surface-inverse-button-primary-active);
+  border-color: var(--border-inverse-button-primary-active);
+  color: var(--text-inverse-button-primary-active);
+}
+.button--inverse-primary:focus-visible,
+.button--inverse-primary[data-state="focus"] {
+  outline-color: var(--border-inverse-focus);
+}
+
+.button--inverse-secondary {
+  background-color: var(--surface-inverse-button-secondary-default);
+  border-color: var(--border-inverse-button-secondary-default);
+  color: var(--text-inverse-button-secondary-default);
+}
+.button--inverse-secondary:hover:not(.no-hover),
+.button--inverse-secondary[data-state="hovered"] {
+  background-color: var(--surface-inverse-button-secondary-hovered);
+  border-color: var(--border-inverse-button-secondary-hovered);
+  color: var(--text-inverse-button-secondary-hovered);
+}
+.button--inverse-secondary:active,
+.button--inverse-secondary[data-state="active"] {
+  background-color: var(--surface-inverse-button-secondary-active);
+  border-color: var(--border-inverse-button-secondary-active);
+  color: var(--text-inverse-button-secondary-active);
+}
+.button--inverse-secondary:focus-visible,
+.button--inverse-secondary[data-state="focus"] {
+  outline-color: var(--border-inverse-focus);
+}

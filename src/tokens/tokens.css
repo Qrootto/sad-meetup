@@ -1,0 +1,163 @@
+/* Токены — ссылаются только на примитивы (логика токенов, разделы 3–6).
+   Цвет: тип — вариант — элемент — статус — роль — стейт.
+   Каждое значение — один var(--p-…): витрина читает этот файл
+   и пишет правки поверх него. */
+
+/* Цвет · колонка Light */
+:root,
+:root[data-theme="light"] {
+  /* Без элемента */
+  --surface-bg-primary: var(--p-color-paper);
+  --surface-bg-secondary: var(--p-color-slate);
+  --surface-inverse-bg-primary: var(--p-color-abyss);
+  --border-neutral-primary: var(--p-color-slate);
+  --border-focus: var(--p-color-denim);
+  --border-inverse-focus: var(--p-color-citron);
+  --text-neutral-primary: var(--p-color-abyss);
+  --text-neutral-secondary: var(--p-color-slate);
+  --text-inverse-neutral-primary: var(--p-color-paper);
+
+  /* button */
+  --surface-button-secondary-default: var(--p-color-paper);
+  --surface-button-secondary-hovered: var(--p-color-abyss);
+  --surface-button-secondary-active: var(--p-color-slate);
+  --border-button-secondary-default: var(--p-color-abyss);
+  --border-button-secondary-hovered: var(--p-color-abyss);
+  --border-button-secondary-active: var(--p-color-slate);
+  --text-button-secondary-default: var(--p-color-abyss);
+  --text-button-secondary-hovered: var(--p-color-paper);
+  --text-button-secondary-active: var(--p-color-paper);
+  --surface-inverse-button-primary-default: var(--p-color-citron);
+  --surface-inverse-button-primary-hovered: var(--p-color-paper);
+  --surface-inverse-button-primary-active: var(--p-color-slate);
+  --border-inverse-button-primary-default: var(--p-color-citron);
+  --border-inverse-button-primary-hovered: var(--p-color-paper);
+  --border-inverse-button-primary-active: var(--p-color-slate);
+  --text-inverse-button-primary-default: var(--p-color-abyss);
+  --text-inverse-button-primary-hovered: var(--p-color-abyss);
+  --text-inverse-button-primary-active: var(--p-color-paper);
+  --surface-inverse-button-secondary-default: var(--p-color-abyss);
+  --surface-inverse-button-secondary-hovered: var(--p-color-paper);
+  --surface-inverse-button-secondary-active: var(--p-color-slate);
+  --border-inverse-button-secondary-default: var(--p-color-paper);
+  --border-inverse-button-secondary-hovered: var(--p-color-paper);
+  --border-inverse-button-secondary-active: var(--p-color-slate);
+  --text-inverse-button-secondary-default: var(--p-color-paper);
+  --text-inverse-button-secondary-hovered: var(--p-color-abyss);
+  --text-inverse-button-secondary-active: var(--p-color-paper);
+
+  /* tag */
+  --surface-tag-accent: var(--p-color-abyss);
+  --border-tag-neutral: var(--p-color-abyss);
+  --border-tag-accent: var(--p-color-abyss);
+  --text-tag-neutral: var(--p-color-abyss);
+  --text-tag-accent: var(--p-color-paper);
+  --surface-inverse-tag-accent: var(--p-color-citron);
+  --border-inverse-tag-neutral: var(--p-color-paper);
+  --border-inverse-tag-accent: var(--p-color-citron);
+  --text-inverse-tag-neutral: var(--p-color-paper);
+  --text-inverse-tag-accent: var(--p-color-abyss);
+
+  /* input */
+  --surface-inverse-input-neutral-default: var(--p-color-abyss);
+  --surface-inverse-input-neutral-hovered: var(--p-color-abyss);
+  --border-inverse-input-neutral-default: var(--p-color-denim);
+  --border-inverse-input-neutral-hovered: var(--p-color-paper);
+  --text-inverse-input-neutral-primary-default: var(--p-color-paper);
+  --text-inverse-input-neutral-primary-hovered: var(--p-color-paper);
+  --text-inverse-input-neutral-secondary-default: var(--p-color-denim);
+  --text-inverse-input-neutral-secondary-hovered: var(--p-color-denim);
+  --surface-inverse-input-alert-default: var(--p-color-abyss);
+  --surface-inverse-input-alert-hovered: var(--p-color-abyss);
+  --border-inverse-input-alert-default: var(--p-color-coral);
+  --border-inverse-input-alert-hovered: var(--p-color-coral);
+  --text-inverse-input-alert-primary-default: var(--p-color-paper);
+  --text-inverse-input-alert-primary-hovered: var(--p-color-paper);
+  --text-inverse-input-alert-secondary-default: var(--p-color-denim);
+  --text-inverse-input-alert-secondary-hovered: var(--p-color-denim);
+  --text-inverse-input-alert-tertiary: var(--p-color-coral);
+
+  /* nav-item */
+  --text-inverse-nav-item-default: var(--p-color-paper);
+  --text-inverse-nav-item-hovered: var(--p-color-citron);
+  --text-inverse-nav-item-active: var(--p-color-citron);
+}
+
+/* Цвет · колонка Dark — заполняется позже. Пока пусто: действуют значения Light. */
+:root[data-theme="dark"] {
+}
+
+/* Шкалы, сетка, текстовые стили, движение · колонка 1440 */
+:root {
+  /* Отступы */
+  --space-3xs: var(--p-size-4);
+  --space-2xs: var(--p-size-8);
+  --space-xs: var(--p-size-12);
+  --space-s: var(--p-size-16);
+  --space-m: var(--p-size-24);
+  --space-l: var(--p-size-32);
+  --space-xl: var(--p-size-48);
+  --space-2xl: var(--p-size-64);
+  --space-3xl: var(--p-size-96);
+  --space-4xl: var(--p-size-128);
+
+  /* Скругления */
+  --radius-s: var(--p-size-8);
+  --radius-m: var(--p-size-12);
+  --radius-l: var(--p-size-24);
+  --radius-full: var(--p-size-999);
+
+  /* Обводки */
+  --stroke-s: var(--p-size-1);
+  --stroke-m: var(--p-size-2);
+
+  /* Высоты элементов управления */
+  --size-s: var(--p-size-32);
+  --size-m: var(--p-size-48);
+  --size-l: var(--p-size-64);
+
+  /* Ширины — токены без элемента */
+  --width-container: var(--p-size-1200);
+  --width-nav: var(--p-size-256);
+
+  /* Текстовые стили */
+  --font-h1-family: var(--p-family-onest);
+  --font-h1-size: var(--p-font-size-72);
+  --font-h1-leading: var(--p-leading-105);
+  --font-h1-weight: var(--p-weight-medium);
+  --font-h1-tracking: var(--p-tracking-minus-2);
+
+  --font-h2-family: var(--p-family-onest);
+  --font-h2-size: var(--p-font-size-48);
+  --font-h2-leading: var(--p-leading-110);
+  --font-h2-weight: var(--p-weight-medium);
+  --font-h2-tracking: var(--p-tracking-minus-1);
+
+  --font-h3-family: var(--p-family-onest);
+  --font-h3-size: var(--p-font-size-24);
+  --font-h3-leading: var(--p-leading-130);
+  --font-h3-weight: var(--p-weight-medium);
+  --font-h3-tracking: var(--p-tracking-0);
+
+  --font-body-family: var(--p-family-onest);
+  --font-body-size: var(--p-font-size-18);
+  --font-body-leading: var(--p-leading-150);
+  --font-body-weight: var(--p-weight-regular);
+  --font-body-tracking: var(--p-tracking-0);
+
+  --font-small-family: var(--p-family-onest);
+  --font-small-size: var(--p-font-size-16);
+  --font-small-leading: var(--p-leading-145);
+  --font-small-weight: var(--p-weight-regular);
+  --font-small-tracking: var(--p-tracking-0);
+
+  --font-caption-family: var(--p-family-onest);
+  --font-caption-size: var(--p-font-size-14);
+  --font-caption-leading: var(--p-leading-140);
+  --font-caption-weight: var(--p-weight-regular);
+  --font-caption-tracking: var(--p-tracking-0);
+
+  /* Движение: hover — вход мгновенно, уход плавно (глобальное правило 5.2) */
+  --hover-out: var(--p-duration-160);
+  --hover-easing: var(--p-easing-ease-out);
+}

@@ -1,0 +1,10 @@
+/* @title Контейнер
+   @description Сетка страницы: 12 колонок по центру, колонка 78, поля секции получаются из центрирования (логика токенов, 4.1). */
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin-inline: auto;
+  max-inline-size: var(--width-container); /* ширина контейнера */
+  column-gap: var(--space-m); /* гаттер между колонками */
+}

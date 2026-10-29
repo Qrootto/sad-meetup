@@ -1,0 +1,95 @@
+/* @title Поле
+   @description Поле ввода почты в подвале. Статус alert — адрес с ошибкой, под полем появляется сообщение. */
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__control {
+  inline-size: 100%;
+  border-style: solid;
+  outline: none;
+  block-size: var(--size-m); /* высота поля */
+  padding-inline: var(--space-m); /* отступ текста от левого и правого края */
+  border-width: var(--stroke-s); /* толщина обводки */
+  border-radius: var(--radius-full); /* скругление углов */
+  font-family: var(--font-body-family); /* текстовый стиль введённого текста и плейсхолдера */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--hover-out); /* длительность возврата из hovered */
+  transition-timing-function: var(--hover-easing); /* кривая возврата из hovered */
+}
+
+/* Вход в hovered — мгновенно (глобальное правило 5.2) */
+.input:hover .input__control {
+  transition: none;
+}
+
+.input__control:focus-visible,
+.input[data-state="focus"] .input__control {
+  outline-style: solid;
+  outline-width: var(--stroke-m); /* толщина кольца фокуса */
+  outline-offset: var(--stroke-m); /* зазор между полем и кольцом фокуса */
+}
+
+.input__message {
+  margin-block-start: var(--space-2xs); /* отступ сообщения от поля */
+  font-family: var(--font-caption-family); /* текстовый стиль сообщения */
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: var(--font-caption-tracking);
+}
+
+.input--inverse-neutral .input__control {
+  background-color: var(--surface-inverse-input-neutral-default);
+  border-color: var(--border-inverse-input-neutral-default);
+  color: var(--text-inverse-input-neutral-primary-default);
+}
+.input--inverse-neutral .input__control::placeholder {
+  color: var(--text-inverse-input-neutral-secondary-default);
+}
+.input--inverse-neutral:hover .input__control,
+.input--inverse-neutral[data-state="hovered"] .input__control {
+  background-color: var(--surface-inverse-input-neutral-hovered);
+  border-color: var(--border-inverse-input-neutral-hovered);
+  color: var(--text-inverse-input-neutral-primary-hovered);
+}
+.input--inverse-neutral:hover .input__control::placeholder,
+.input--inverse-neutral[data-state="hovered"] .input__control::placeholder {
+  color: var(--text-inverse-input-neutral-secondary-hovered);
+}
+.input--inverse-neutral .input__control:focus-visible,
+.input--inverse-neutral[data-state="focus"] .input__control {
+  outline-color: var(--border-inverse-focus);
+}
+
+.input--inverse-alert .input__control {
+  background-color: var(--surface-inverse-input-alert-default);
+  border-color: var(--border-inverse-input-alert-default);
+  color: var(--text-inverse-input-alert-primary-default);
+}
+.input--inverse-alert .input__control::placeholder {
+  color: var(--text-inverse-input-alert-secondary-default);
+}
+.input--inverse-alert:hover .input__control,
+.input--inverse-alert[data-state="hovered"] .input__control {
+  background-color: var(--surface-inverse-input-alert-hovered);
+  border-color: var(--border-inverse-input-alert-hovered);
+  color: var(--text-inverse-input-alert-primary-hovered);
+}
+.input--inverse-alert:hover .input__control::placeholder,
+.input--inverse-alert[data-state="hovered"] .input__control::placeholder {
+  color: var(--text-inverse-input-alert-secondary-hovered);
+}
+.input--inverse-alert .input__control:focus-visible,
+.input--inverse-alert[data-state="focus"] .input__control {
+  outline-color: var(--border-inverse-focus);
+}
+.input--inverse-alert .input__message {
+  color: var(--text-inverse-input-alert-tertiary);
+}

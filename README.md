@@ -1,21 +1,19 @@
 # sad-meetup
 
-Landing page for a fictional meetup and a live editor for its design system
+Landing page for a fictional meetup and a live editor for its design system.
 
 ## Quick start
 
-<!-- Replace with actual setup steps.
-     Example:
-     ```bash
-     npm install
-     npm run dev
-     ```
-     Then open http://localhost:5173 -->
+```bash
+npm install
+npm run dev
+```
+
+Landing: http://localhost:5190/ · Library: http://localhost:5190/library/
 
 ## Stack
 
-<!-- Brief list of main technologies.
-     Example: Vite, vanilla JS, CSS variables. -->
+Vanilla JS and CSS custom properties, Vite (dev dependency only). Font: Onest (Google Fonts).
 
 ## Documentation
 

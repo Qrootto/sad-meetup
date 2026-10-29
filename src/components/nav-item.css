@@ -1,0 +1,45 @@
+/* @title Пункт меню
+   @description Ссылка на раздел лендинга в шапке. Шапка тёмная, поэтому вариант один — inverse. */
+
+.nav-item {
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-small-family); /* текстовый стиль пункта */
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-small-weight);
+  letter-spacing: var(--font-small-tracking);
+  transition-property: color;
+  transition-duration: var(--hover-out); /* длительность возврата из hovered и active */
+  transition-timing-function: var(--hover-easing); /* кривая возврата из hovered и active */
+}
+
+/* Вход в hovered и active — мгновенно (глобальное правило 5.2) */
+.nav-item:hover,
+.nav-item:active {
+  transition: none;
+}
+
+.nav-item:focus-visible,
+.nav-item[data-state="focus"] {
+  outline-style: solid;
+  outline-width: var(--stroke-m); /* толщина кольца фокуса */
+  outline-offset: var(--stroke-m); /* зазор между текстом и кольцом фокуса */
+}
+
+.nav-item--inverse {
+  color: var(--text-inverse-nav-item-default);
+}
+.nav-item--inverse:hover:not(.no-hover),
+.nav-item--inverse[data-state="hovered"] {
+  color: var(--text-inverse-nav-item-hovered);
+}
+.nav-item--inverse:active,
+.nav-item--inverse[data-state="active"] {
+  color: var(--text-inverse-nav-item-active);
+}
+.nav-item--inverse:focus-visible,
+.nav-item--inverse[data-state="focus"] {
+  outline-color: var(--border-inverse-focus);
+}
