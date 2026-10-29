@@ -1,0 +1,60 @@
+/* @title Карточка тарифа
+   @description Тариф: тег, название, цена, что входит, кнопка. Строки общие для всех карточек (subgrid), поэтому тег контент не сдвигает. Акцентный тариф — inverse.
+   @surface --surface-bg-secondary */
+
+.price-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  padding: var(--space-l); /* поля карточки */
+  border-radius: var(--radius-l); /* скругление углов */
+  row-gap: var(--space-m); /* промежуток между строками карточки */
+  background-color: var(--surface-price-card);
+  color: var(--text-price-card-primary);
+}
+
+.price-card .tag {
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+}
+
+.price-card__name {
+  grid-row: 2;
+  font-family: var(--font-h3-family); /* текстовый стиль названия */
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+}
+
+.price-card__price {
+  grid-row: 3;
+  font-family: var(--font-h2-family); /* текстовый стиль цены */
+  font-size: var(--font-h2-size);
+  line-height: var(--font-h2-leading);
+  font-weight: var(--font-h2-weight);
+  letter-spacing: var(--font-h2-tracking);
+}
+
+.price-card__includes {
+  grid-row: 4;
+  color: var(--text-price-card-secondary);
+  font-family: var(--font-body-family); /* текстовый стиль «что входит» */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+}
+
+.price-card .button {
+  grid-row: 5;
+  align-self: end;
+}
+
+.price-card--inverse {
+  background-color: var(--surface-inverse-price-card);
+  color: var(--text-inverse-price-card);
+}
+.price-card--inverse .price-card__includes {
+  color: var(--text-inverse-price-card);
+}

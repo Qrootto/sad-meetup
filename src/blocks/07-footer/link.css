@@ -1,0 +1,47 @@
+/* @title Ссылка
+   @description Текстовая ссылка с подчёркиванием — контакты в подвале. Подвал тёмный, поэтому вариант один — inverse.
+   @surface --surface-inverse-bg-primary */
+
+.link {
+  text-decoration-line: underline;
+  outline: none;
+  text-decoration-thickness: var(--stroke-s); /* толщина подчёркивания */
+  text-underline-offset: var(--space-3xs); /* отступ подчёркивания от текста */
+  font-family: var(--font-small-family); /* текстовый стиль ссылки */
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-small-weight);
+  letter-spacing: var(--font-small-tracking);
+  transition-property: color;
+  transition-duration: var(--hover-out); /* длительность возврата из hovered и active */
+  transition-timing-function: var(--hover-easing); /* кривая возврата из hovered и active */
+}
+
+/* Вход в hovered и active — мгновенно (глобальное правило 5.2) */
+.link:hover,
+.link:active {
+  transition: none;
+}
+
+.link:focus-visible,
+.link[data-state="focus"] {
+  outline-style: solid;
+  outline-width: var(--stroke-m); /* толщина кольца фокуса */
+  outline-offset: var(--stroke-m); /* зазор между текстом и кольцом фокуса */
+}
+
+.link--inverse {
+  color: var(--text-inverse-link-default);
+}
+.link--inverse:hover,
+.link--inverse[data-state="hovered"] {
+  color: var(--text-inverse-link-hovered);
+}
+.link--inverse:active,
+.link--inverse[data-state="active"] {
+  color: var(--text-inverse-link-active);
+}
+.link--inverse:focus-visible,
+.link--inverse[data-state="focus"] {
+  outline-color: var(--border-inverse-focus);
+}

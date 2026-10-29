@@ -1,0 +1,88 @@
+/* @title Хиро
+   @description Первый экран: шапка, теги, заголовок, подзаголовок, кнопки и цифры. Под контентом — пустой canvas под будущий шейдер.
+   @surface --surface-inverse-bg-primary */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--surface-inverse-bg-primary);
+  color: var(--text-inverse-neutral-primary);
+}
+
+/* Слой под будущий шейдер: пока пустой, видна inverse-поверхность */
+.hero__shader {
+  position: absolute;
+  inset: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.hero .header,
+.hero > .container {
+  position: relative;
+}
+
+.hero > .container {
+  padding-block-start: var(--space-3xl); /* отступ от шапки до тегов */
+  padding-block-end: var(--space-3xl); /* отступ от цифр до низа хиро */
+}
+
+.hero__tags {
+  grid-column: 1 / -1;
+  display: flex;
+  column-gap: var(--space-2xs); /* промежуток между тегами */
+}
+
+.hero__tags .tag {
+  flex: none;
+}
+
+.hero__title {
+  grid-column: 1 / span 10;
+  margin-block-start: var(--space-l); /* отступ заголовка от тегов */
+  font-family: var(--font-h1-family); /* текстовый стиль заголовка */
+  font-size: var(--font-h1-size);
+  line-height: var(--font-h1-leading);
+  font-weight: var(--font-h1-weight);
+  letter-spacing: var(--font-h1-tracking);
+}
+
+.hero__lead {
+  grid-column: 1 / span 7;
+  margin-block-start: var(--space-m); /* отступ подзаголовка от заголовка */
+  font-family: var(--font-body-family); /* текстовый стиль подзаголовка */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+}
+
+.hero__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  margin-block-start: var(--space-xl); /* отступ кнопок от подзаголовка */
+  column-gap: var(--space-s); /* промежуток между кнопками */
+}
+
+.hero__actions .button {
+  flex: none;
+}
+
+.hero__stats {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding: 0;
+  list-style: none;
+  margin-block-start: var(--space-3xl); /* отступ цифр от кнопок */
+}
+
+.hero__stat {
+  grid-column: span 3;
+  font-family: var(--font-h3-family); /* текстовый стиль цифр */
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+}

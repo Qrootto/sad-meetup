@@ -1,0 +1,29 @@
+/* @title Вопросы
+   @description Заголовок и вопросы-аккордеон; можно открыть несколько сразу.
+   @surface --surface-bg-primary */
+
+.faq {
+  background-color: var(--surface-bg-primary);
+}
+
+.faq > .container {
+  padding-block: var(--space-3xl); /* отступ секции сверху и снизу */
+}
+
+.faq__title {
+  grid-column: 1 / -1;
+  margin-block-end: var(--space-xl); /* отступ заголовка от содержимого */
+  font-family: var(--font-h2-family); /* текстовый стиль заголовка секции */
+  font-size: var(--font-h2-size);
+  line-height: var(--font-h2-leading);
+  font-weight: var(--font-h2-weight);
+  letter-spacing: var(--font-h2-tracking);
+}
+
+.faq__title {
+  color: var(--text-neutral-primary);
+}
+
+.faq__list {
+  grid-column: 1 / span 8;
+}

@@ -1,0 +1,99 @@
+/* @title Вопрос
+   @description Вопрос и ответ, раскрывается по клику (details). Текст вопроса стоит на краю сетки, фон наведения выходит за неё.
+   @surface --surface-bg-primary */
+
+.faq-item {
+  border-block-end-style: solid;
+  border-block-end-width: var(--stroke-s); /* толщина линии под вопросом */
+  border-block-end-color: var(--border-faq-item);
+  --bleed: var(--space-m); /* насколько фон наведения выходит за край сетки; на столько же текст отступает внутрь */
+}
+
+.faq-item__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-inline: calc(var(--bleed) * -1);
+  list-style: none;
+  cursor: pointer;
+  outline: none;
+  padding-inline: var(--bleed);
+  padding-block: var(--space-m); /* отступ вопроса от верха и низа */
+  column-gap: var(--space-m); /* промежуток между вопросом и знаком */
+  border-radius: var(--radius-m); /* скругление фона наведения */
+  font-family: var(--font-h3-family); /* текстовый стиль вопроса */
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+  transition-property: background-color, color;
+  transition-duration: var(--hover-out); /* длительность возврата из hovered и active */
+  transition-timing-function: var(--hover-easing); /* кривая возврата из hovered и active */
+}
+.faq-item__question::-webkit-details-marker {
+  display: none;
+}
+.faq-item__question::after {
+  content: "+";
+  transition-property: color;
+  transition-duration: var(--hover-out);
+  transition-timing-function: var(--hover-easing);
+}
+.faq-item[open] .faq-item__question::after {
+  content: "−";
+}
+
+/* Вход в hovered и active — мгновенно (глобальное правило 5.2) */
+.faq-item__question:hover,
+.faq-item__question:active,
+.faq-item__question:hover::after,
+.faq-item__question:active::after {
+  transition: none;
+}
+
+.faq-item__question:focus-visible,
+.faq-item[data-state="focus"] .faq-item__question {
+  outline-style: solid;
+  outline-width: var(--stroke-m); /* толщина кольца фокуса */
+  outline-offset: var(--stroke-m); /* зазор между фоном вопроса и кольцом фокуса */
+}
+
+.faq-item__answer {
+  padding-block-end: var(--space-m); /* отступ ответа снизу */
+  color: var(--text-faq-item-secondary);
+  font-family: var(--font-body-family); /* текстовый стиль ответа */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+}
+
+.faq-item__question {
+  background-color: var(--surface-faq-item-default);
+  color: var(--text-faq-item-primary-default);
+}
+.faq-item__question::after {
+  color: var(--icon-faq-item-default);
+}
+.faq-item__question:hover:not(.no-hover),
+.faq-item[data-state="hovered"] .faq-item__question {
+  background-color: var(--surface-faq-item-hovered);
+  color: var(--text-faq-item-primary-hovered);
+}
+.faq-item__question:hover:not(.no-hover)::after,
+.faq-item[data-state="hovered"] .faq-item__question::after {
+  color: var(--icon-faq-item-hovered);
+}
+.faq-item__question:active,
+.faq-item[data-state="active"] .faq-item__question {
+  background-color: var(--surface-faq-item-active);
+  color: var(--text-faq-item-primary-active);
+}
+.faq-item__question:active::after,
+.faq-item[data-state="active"] .faq-item__question::after {
+  color: var(--icon-faq-item-active);
+}
+.faq-item__question:focus-visible,
+.faq-item[data-state="focus"] .faq-item__question {
+  outline-color: var(--border-focus);
+}

@@ -1,6 +1,7 @@
 import '../src/styles.js';
 import './library.css';
 import { initHoverSuppress } from '../src/hover-suppress.js';
+import { fixOrphans } from '../src/fix-orphans.js';
 import * as M from './model.js';
 import * as D from './draft.js';
 
@@ -18,12 +19,12 @@ const SIZE_GROUPS = [
   ['size', 'Высоты элементов управления'],
   ['width', 'Ширины'],
 ];
-const COLOR_ROWS = [
-  ['surface', 'surface'],
-  ['border', 'border'],
-  ['text', 'text'],
-];
-const PROP_TYPE = { 'background-color': 'surface', 'border-color': 'border', color: 'text', 'outline-color': 'ring' };
+// Ширина лендинга: превью блоков масштабируется от неё под ширину области (вычисляемое значение, не токен).
+const LANDING_WIDTH = 1440;
+const COLOR_PROPS = new Set(['background-color', 'border-color', 'border-block-end-color', 'color', 'outline-color']);
+// Тип цвета — по имени токена; кольцо фокуса (outline-color) — отдельно, в колонке focus.
+const colorType = (d) => (d.prop === 'outline-color' ? 'ring' : d.varName.slice(2).split('-')[0]);
+const isColorDecl = (d) => d.varName && COLOR_PROPS.has(d.prop) && M.tokenKind(d.varName) === 'color';
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const primTitle = (name) => {
@@ -334,21 +335,54 @@ const propRow = (name, label, hint, control) => `
     ${control}
   </div>`;
 
+// Компоненты — пример из <имя>.demo.js; блоки и элементы — разметка лендинга (index.html).
+// Широкое превью ставится в кадр шириной лендинга и масштабируется под область (layoutFrames).
 function demoNode(unit, variant, state) {
-  const html = unit.demo[variant];
-  if (!html) return `<span class="lib-muted">Нет примера в ${esc(unit.file.replace(/\.css$/, '.demo.js'))}</span>`;
+  const fromLanding = unit.kind !== 'component';
+  const preview = fromLanding ? M.landingPreview(unit, variant) : { html: unit.demo[variant], crop: false };
+  if (!preview?.html) {
+    const where = fromLanding ? 'index.html' : unit.file.replace(/\.css$/, '.demo.js');
+    return `<span class="lib-muted">Нет примера в ${esc(where)}</span>`;
+  }
   const tpl = document.createElement('template');
-  tpl.innerHTML = html.trim();
-  const root = tpl.content.firstElementChild;
-  if (state !== 'default') root.setAttribute('data-state', state);
-  return tpl.innerHTML;
+  tpl.innerHTML = preview.html.trim();
+  const target = tpl.content.querySelector('[data-preview-target]') || tpl.content.firstElementChild;
+  if (state !== 'default') target.setAttribute('data-state', state);
+  const framed = fromLanding || unit.id === 'container';
+  if (!framed) return tpl.innerHTML;
+  return `<div class="lib-frame" data-frame${preview.crop ? ' data-crop' : ''}><div class="lib-frame__page">${tpl.innerHTML}</div></div>`;
 }
 
-function sceneClass(unit, variant) {
+function sceneAttrs(unit, variant) {
   const classes = ['lib-scene', 'squircle'];
-  if (variant.startsWith('inverse')) classes.push('lib-scene--inverse');
-  if (unit.id === 'container' || unit.kind === 'block') classes.push('lib-scene--wide');
-  return classes.join(' ');
+  if (!unit.surface && variant.startsWith('inverse')) classes.push('lib-scene--inverse');
+  if (unit.kind === 'block' || unit.id === 'container') classes.push('lib-scene--page');
+  const style = unit.surface ? ` style="background-color: var(${unit.surface}); border-color: var(${unit.surface})"` : '';
+  return `class="${classes.join(' ')}"${style}`;
+}
+
+// Кадр: страница шириной лендинга, масштаб = доступная ширина / ширина кадра (не больше 1).
+// У элемента кадр обрезается по самому элементу — сцена обнимает его с полями.
+function layoutFrames() {
+  const available = mainEl.clientWidth - parseFloat(getComputedStyle(mainEl).paddingInlineStart) * 2;
+  for (const frame of mainEl.querySelectorAll('[data-frame]')) {
+    const page = frame.firstElementChild;
+    const scene = frame.closest('.lib-scene');
+    const scenePad = parseFloat(getComputedStyle(scene).paddingInlineStart) * 2;
+    page.style.transform = 'none';
+    page.style.inlineSize = `${LANDING_WIDTH}px`;
+    const pageBox = page.getBoundingClientRect();
+    let box = { x: 0, y: 0, w: LANDING_WIDTH, h: page.scrollHeight };
+    const target = frame.hasAttribute('data-crop') && page.querySelector('[data-preview-target]');
+    if (target) {
+      const r = target.getBoundingClientRect();
+      box = { x: r.left - pageBox.left, y: r.top - pageBox.top, w: r.width, h: r.height };
+    }
+    const k = Math.min(1, (available - scenePad) / box.w);
+    frame.style.inlineSize = `${box.w * k}px`;
+    frame.style.blockSize = `${box.h * k}px`;
+    page.style.transform = `scale(${k}) translate(${-box.x}px, ${-box.y}px)`;
+  }
 }
 
 function colorEntry(d, part) {
@@ -362,12 +396,17 @@ function colorEntry(d, part) {
 }
 
 function colorTable(unit, variant, states) {
+  const ownRules = unit.rules.filter((r) => r.variant === (variant || null));
   const entries = (state, type) =>
-    unit.rules
-      .filter((r) => r.variant === (variant || null) && r.state === state)
-      .flatMap((r) => r.decls.filter((d) => d.varName && PROP_TYPE[d.prop] === type).map((d) => colorEntry(d, r.part)));
+    ownRules
+      .filter((r) => r.state === state)
+      .flatMap((r) => r.decls.filter((d) => isColorDecl(d) && colorType(d) === type).map((d) => colorEntry(d, r.part)));
   const head = states.length > 1 ? `<tr><th></th>${states.map((s) => `<th>${s}</th>`).join('')}</tr>` : '';
-  const rows = COLOR_ROWS.map(([type, title]) => {
+  // Строки surface, border, text — всегда; icon и effect — если они есть у варианта.
+  const present = new Set(ownRules.flatMap((r) => r.decls.filter(isColorDecl).map(colorType)));
+  const types = M.COLOR_TYPES.filter((t) => ['surface', 'border', 'text'].includes(t) || present.has(t));
+  const rows = types.map((type) => {
+    const title = type;
     const cells = states.map((s) => {
       if (s === 'focus') {
         if (type !== 'border') return '<td class="lib-muted">как default</td>';
@@ -384,7 +423,7 @@ function colorTable(unit, variant, states) {
 
 function variantTokens(unit, variant, states) {
   const ownRules = unit.rules.filter((r) => r.variant === (variant || null));
-  const hasColor = ownRules.some((r) => r.decls.some((d) => d.varName && PROP_TYPE[d.prop]));
+  const hasColor = ownRules.some((r) => r.decls.some(isColorDecl));
   const sizes = variant ? propRows(unit, ownRules) : '';
   if (!hasColor && !sizes) return '';
   return `
@@ -411,8 +450,8 @@ function unitScreen(unit) {
           .join('');
         return `
           <section class="lib-variant" data-variant="${v}">
-            <h2 class="lib-h">${esc(v || unit.id)}</h2>
-            <div class="${sceneClass(unit, v)}"><div class="lib-states">${cells}</div></div>
+            ${unit.variants.length > 1 || v ? `<h2 class="lib-h">${esc(v || unit.id)}</h2>` : ''}
+            <div ${sceneAttrs(unit, v)}><div class="lib-states">${cells}</div></div>
             ${variantTokens(unit, v, states)}
           </section>`;
       })
@@ -422,8 +461,8 @@ function unitScreen(unit) {
       .map(
         (v) => `
         <section class="lib-variant lib-variant--inline" data-variant="${v}">
-          ${v ? `<h2 class="lib-h">${esc(v)}</h2>` : ''}
-          <div class="${sceneClass(unit, v)}" data-cell="${v}|default">${demoNode(unit, v, 'default')}</div>
+          ${unit.variants.length > 1 ? `<h2 class="lib-h">${esc(v || unit.id)}</h2>` : ''}
+          <div ${sceneAttrs(unit, v)} data-cell="${v}|default">${demoNode(unit, v, 'default')}</div>
           ${variantTokens(unit, v, ['default'])}
         </section>`,
       )
@@ -460,6 +499,8 @@ function render() {
     html = unit ? unitScreen(unit) : '<p class="lib-muted">Такого раздела нет.</p>';
   }
   mainEl.innerHTML = html;
+  for (const page of mainEl.querySelectorAll('.lib-frame__page')) fixOrphans(page);
+  layoutFrames();
   mainEl.scrollTop = 0;
   renderNav();
   refresh();
@@ -609,4 +650,8 @@ initTheme();
 initHoverSuppress();
 D.apply();
 window.addEventListener('hashchange', render);
+window.addEventListener('resize', layoutFrames);
+// Шрифт и фото догружаются после первой раскладки — пересчитать кадры.
+document.fonts?.ready.then(layoutFrames);
+mainEl.addEventListener('load', layoutFrames, true);
 render();

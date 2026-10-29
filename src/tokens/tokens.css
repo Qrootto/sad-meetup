@@ -81,6 +81,43 @@
   --text-inverse-nav-item-default: var(--p-color-paper);
   --text-inverse-nav-item-hovered: var(--p-color-citron);
   --text-inverse-nav-item-active: var(--p-color-citron);
+
+  /* schedule-row */
+  --border-schedule-row: var(--p-color-slate);
+  --text-schedule-row-primary: var(--p-color-abyss);
+  --text-schedule-row-secondary: var(--p-color-slate);
+
+  /* speaker-card */
+  --text-speaker-card-primary: var(--p-color-abyss);
+  --text-speaker-card-secondary: var(--p-color-slate);
+
+  /* price-card */
+  --surface-price-card: var(--p-color-paper);
+  --text-price-card-primary: var(--p-color-abyss);
+  --text-price-card-secondary: var(--p-color-slate);
+  --surface-inverse-price-card: var(--p-color-abyss);
+  --text-inverse-price-card: var(--p-color-paper);
+
+  /* faq-item */
+  --surface-faq-item-default: var(--p-color-paper);
+  --surface-faq-item-hovered: var(--p-color-abyss);
+  --surface-faq-item-active: var(--p-color-slate);
+  --border-faq-item: var(--p-color-slate);
+  --text-faq-item-primary-default: var(--p-color-abyss);
+  --text-faq-item-primary-hovered: var(--p-color-paper);
+  --text-faq-item-primary-active: var(--p-color-paper);
+  --text-faq-item-secondary: var(--p-color-slate);
+  --icon-faq-item-default: var(--p-color-abyss);
+  --icon-faq-item-hovered: var(--p-color-paper);
+  --icon-faq-item-active: var(--p-color-paper);
+
+  /* link */
+  --text-inverse-link-default: var(--p-color-paper);
+  --text-inverse-link-hovered: var(--p-color-citron);
+  --text-inverse-link-active: var(--p-color-citron);
+
+  /* tickets */
+  --text-tickets: var(--p-color-paper);
 }
 
 /* Цвет · колонка Dark — заполняется позже. Пока пусто: действуют значения Light. */

@@ -1,0 +1,36 @@
+/* @title Шапка
+   @description Логотип, меню-якоря и кнопка «Купить билет». Встроена в хиро, стоит в потоке.
+   @surface --surface-inverse-bg-primary */
+
+.header {
+  color: var(--text-inverse-neutral-primary);
+  padding-block: var(--space-m); /* отступ шапки сверху и снизу */
+}
+
+.header > .container {
+  align-items: center;
+}
+
+.header__logo {
+  grid-column: 1 / span 3;
+  font-family: var(--font-h3-family); /* текстовый стиль логотипа */
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+}
+
+.header__nav {
+  grid-column: 4 / span 6;
+  display: flex;
+  column-gap: var(--space-l); /* промежуток между пунктами меню */
+}
+
+.header__nav .nav-item {
+  flex: none;
+}
+
+.header .button {
+  grid-column: 10 / span 3;
+  justify-self: end;
+}

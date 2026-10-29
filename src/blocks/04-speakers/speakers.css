@@ -1,0 +1,38 @@
+/* @title Спикеры
+   @description Заголовок и карточки спикеров, по три в ряд.
+   @surface --surface-bg-primary */
+
+.speakers {
+  background-color: var(--surface-bg-primary);
+}
+
+.speakers > .container {
+  padding-block: var(--space-3xl); /* отступ секции сверху и снизу */
+}
+
+.speakers__title {
+  grid-column: 1 / -1;
+  margin-block-end: var(--space-xl); /* отступ заголовка от содержимого */
+  font-family: var(--font-h2-family); /* текстовый стиль заголовка секции */
+  font-size: var(--font-h2-size);
+  line-height: var(--font-h2-leading);
+  font-weight: var(--font-h2-weight);
+  letter-spacing: var(--font-h2-tracking);
+}
+
+.speakers__title {
+  color: var(--text-neutral-primary);
+}
+
+.speakers__list {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding: 0;
+  list-style: none;
+  row-gap: var(--space-xl); /* промежуток между рядами карточек */
+}
+
+.speakers__list .speaker-card {
+  grid-column: span 4;
+}

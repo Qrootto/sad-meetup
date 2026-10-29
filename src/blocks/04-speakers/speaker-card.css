@@ -1,0 +1,45 @@
+/* @title Карточка спикера
+   @description Фото, имя, роль и компания, тема выступления.
+   @surface --surface-bg-primary */
+
+.speaker-card {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-speaker-card-primary);
+}
+
+.speaker-card__photo {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 1;
+  border-radius: var(--radius-l); /* скругление фото */
+}
+
+.speaker-card__name {
+  margin-block-start: var(--space-s); /* отступ имени от фото */
+  font-family: var(--font-h3-family); /* текстовый стиль имени */
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+}
+
+.speaker-card__role {
+  margin-block-start: var(--space-3xs); /* отступ роли от имени */
+  color: var(--text-speaker-card-secondary);
+  font-family: var(--font-small-family); /* текстовый стиль роли и компании */
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-leading);
+  font-weight: var(--font-small-weight);
+  letter-spacing: var(--font-small-tracking);
+}
+
+.speaker-card__topic {
+  margin-block-start: var(--space-xs); /* отступ темы от роли */
+  font-family: var(--font-body-family); /* текстовый стиль темы */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+}

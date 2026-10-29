@@ -6,20 +6,22 @@
 
 ## Задача и ветка
 
-Задача 1 — проект, дизайн-система, витрина-редактор (2026-10-29). Закрыта, влита в
-`main` (fast-forward), ветка удалена.
+Задача 2 — элементы, блоки, лендинг (2026-10-29). Ветка `feature/landing` →
+влить в `main` в конце задачи.
 
 ## Где остановились
 
-- Примитивы, токены (Light), шкалы целиком, сетка, текстовые стили, движение.
-- Компоненты: button, tag, input, nav-item, container (+ demo для витрины).
-- Витрина `/library/`: каркас, основа с подсветкой и фильтром, экраны
-  компонентов, черновик, текст «для Claude Code»; блоки подхватываются сами.
-- Проверено на прод-сборке скриптом (Chromium headless): консоль чистая.
+- Элементы: schedule-row, speaker-card, price-card, faq-item, link.
+- Блоки: header (внутри hero), hero (пустой canvas под шейдер), program,
+  speakers, tickets, faq, footer (подписка с проверкой адреса).
+- `index.html` — лендинг из компонентов и блоков; fixOrphans().
+- Витрина: группа «Блоки» с элементами, превью из `index.html` с масштабом,
+  фон сцены из `@surface`.
+- Проверено скриптом на prod-preview и dev: консоль чистая, сетка, выравнивание.
 
 ## Следующий шаг
 
-- Задача 2 — блоки лендинга по content.md (BACKLOG.md).
+- Шейдер в хиро (BACKLOG.md).
 
 ## Открытые вопросы
 
@@ -27,9 +29,10 @@
 
 ## Последние коммиты
 
+- `853b48b` fix(vite): keep library redirect hooks from returning the middleware
+- `fc431bf` docs(session): design system task closed and merged
 - `911288f` feat(design-system): add primitives, tokens, scales, text styles, base components and library editor
-- `29f3f14` chore: bootstrap project from level-2-personal template
 
 ## Решения
 
-DECISIONS.md — «Стек и устройство», «Токены» (2026-10-29).
+DECISIONS.md — «Стек и устройство», «Лендинг», «Токены».

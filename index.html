@@ -9,8 +9,227 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap">
   </head>
   <body>
-    <!-- Лендинг собирается в следующей задаче из блоков src/blocks/. -->
-    <main id="landing"></main>
+    <!-- Лендинг собран только из компонентов и блоков системы. Тексты — ~/Desktop/stream/content.md.
+         Витрина берёт отсюда превью блоков и их элементов: эта разметка — единственный источник. -->
+    <main>
+      <section class="hero">
+        <canvas class="hero__shader" aria-hidden="true"></canvas>
+
+        <header class="header">
+          <div class="container">
+            <span class="header__logo">САД</span>
+            <nav class="header__nav" aria-label="Разделы">
+              <a class="nav-item nav-item--inverse" href="#program">Программа</a>
+              <a class="nav-item nav-item--inverse" href="#speakers">Спикеры</a>
+              <a class="nav-item nav-item--inverse" href="#tickets">Билеты</a>
+              <a class="nav-item nav-item--inverse" href="#faq">Вопросы</a>
+            </nav>
+            <a class="button button--inverse-primary squircle" href="#tickets">Купить билет</a>
+          </div>
+        </header>
+
+        <div class="container">
+          <div class="hero__tags">
+            <span class="tag tag--inverse-neutral squircle">12 декабря, суббота</span>
+            <span class="tag tag--inverse-neutral squircle">Москва, Цех 4</span>
+            <span class="tag tag--inverse-neutral squircle">Есть онлайн</span>
+          </div>
+          <h1 class="hero__title">Сообщество анонимных дизайнеров. Возвращение</h1>
+          <p class="hero__lead">Мы снова собираемся, чтобы честно признаться: у нас опять токен на каждый оттенок серого. Один день, пять историй и воркшоп</p>
+          <div class="hero__actions">
+            <a class="button button--inverse-primary squircle" href="#tickets">Купить билет</a>
+            <a class="button button--inverse-secondary squircle" href="#program">Смотреть программу</a>
+          </div>
+          <ul class="hero__stats">
+            <li class="hero__stat">5 историй</li>
+            <li class="hero__stat">1 воркшоп</li>
+            <li class="hero__stat">300 стульев в кругу</li>
+            <li class="hero__stat">онлайн-трансляция</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="program" id="program">
+        <div class="container">
+          <h2 class="program__title">Программа</h2>
+          <ol class="program__list">
+            <li class="schedule-row schedule-row--secondary">
+              <span class="schedule-row__time">10:00</span>
+              <span class="schedule-row__title">Регистрация, чай и печенье</span>
+            </li>
+            <li class="schedule-row schedule-row--primary">
+              <span class="schedule-row__time">10:30</span>
+              <span class="schedule-row__title">Шаг первый: признать, что у тебя двести оттенков серого</span>
+              <span class="schedule-row__speaker">Марина Лаптева</span>
+              <span class="tag tag--neutral squircle">история</span>
+            </li>
+            <li class="schedule-row schedule-row--primary">
+              <span class="schedule-row__time">11:15</span>
+              <span class="schedule-row__title">«Я ничего не трогал, оно само»: правки после релиза</span>
+              <span class="schedule-row__speaker">Глеб Осокин</span>
+              <span class="tag tag--neutral squircle">история</span>
+            </li>
+            <li class="schedule-row schedule-row--primary">
+              <span class="schedule-row__time">12:00</span>
+              <span class="schedule-row__title">Как перестать рисовать кнопку заново</span>
+              <span class="schedule-row__speaker">Аня Рябова</span>
+              <span class="tag tag--neutral squircle">история</span>
+            </li>
+            <li class="schedule-row schedule-row--secondary">
+              <span class="schedule-row__time">12:45</span>
+              <span class="schedule-row__title">Обед</span>
+            </li>
+            <li class="schedule-row schedule-row--primary">
+              <span class="schedule-row__time">13:45</span>
+              <span class="schedule-row__title">Бренд против системы: история одного срыва</span>
+              <span class="schedule-row__speaker">Тимур Галиев</span>
+              <span class="tag tag--neutral squircle">история</span>
+            </li>
+            <li class="schedule-row schedule-row--primary">
+              <span class="schedule-row__time">14:30</span>
+              <span class="schedule-row__title">Как рассказать бизнесу о своей зависимости</span>
+              <span class="schedule-row__speaker">Ольга Шестакова</span>
+              <span class="tag tag--neutral squircle">история</span>
+            </li>
+            <li class="schedule-row schedule-row--secondary">
+              <span class="schedule-row__time">15:15</span>
+              <span class="schedule-row__title">Кофе-брейк</span>
+            </li>
+            <li class="schedule-row schedule-row--primary">
+              <span class="schedule-row__time">15:45</span>
+              <span class="schedule-row__title">Собираем систему с Claude Code и не срываемся</span>
+              <span class="schedule-row__speaker">Денис Кравец</span>
+              <span class="tag tag--accent squircle">воркшоп</span>
+            </li>
+            <li class="schedule-row schedule-row--secondary">
+              <span class="schedule-row__time">17:00</span>
+              <span class="schedule-row__title">Круг поддержки</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="speakers" id="speakers">
+        <div class="container">
+          <h2 class="speakers__title">Они уже держатся</h2>
+          <ul class="speakers__list">
+            <li class="speaker-card">
+              <img class="speaker-card__photo squircle" src="/speakers/marina-lapteva.webp" alt="Марина Лаптева" width="768" height="768" loading="lazy">
+              <h3 class="speaker-card__name">Марина Лаптева</h3>
+              <p class="speaker-card__role">лид дизайн-системы, Alto Vision</p>
+              <p class="speaker-card__topic">Двести оттенков серого</p>
+            </li>
+            <li class="speaker-card">
+              <img class="speaker-card__photo squircle" src="/speakers/gleb-osokin.webp" alt="Глеб Осокин" width="768" height="768" loading="lazy">
+              <h3 class="speaker-card__name">Глеб Осокин</h3>
+              <p class="speaker-card__role">продуктовый дизайнер, Kinescope</p>
+              <p class="speaker-card__topic">Правки после релиза</p>
+            </li>
+            <li class="speaker-card">
+              <img class="speaker-card__photo squircle" src="/speakers/anya-ryabova.webp" alt="Аня Рябова" width="768" height="768" loading="lazy">
+              <h3 class="speaker-card__name">Аня Рябова</h3>
+              <p class="speaker-card__role">фронтенд-разработчица, Alto Vision</p>
+              <p class="speaker-card__topic">Как перестать рисовать кнопку заново</p>
+            </li>
+            <li class="speaker-card">
+              <img class="speaker-card__photo squircle" src="/speakers/timur-galiev.webp" alt="Тимур Галиев" width="768" height="768" loading="lazy">
+              <h3 class="speaker-card__name">Тимур Галиев</h3>
+              <p class="speaker-card__role">независимый арт-директор</p>
+              <p class="speaker-card__topic">Бренд против системы</p>
+            </li>
+            <li class="speaker-card">
+              <img class="speaker-card__photo squircle" src="/speakers/olga-shestakova.webp" alt="Ольга Шестакова" width="768" height="768" loading="lazy">
+              <h3 class="speaker-card__name">Ольга Шестакова</h3>
+              <p class="speaker-card__role">дизайн-менеджер, Kinescope</p>
+              <p class="speaker-card__topic">Как рассказать бизнесу о зависимости</p>
+            </li>
+            <li class="speaker-card">
+              <img class="speaker-card__photo squircle" src="/speakers/denis-kravets.webp" alt="Денис Кравец" width="768" height="768" loading="lazy">
+              <h3 class="speaker-card__name">Денис Кравец</h3>
+              <p class="speaker-card__role">дизайнер-инженер, Alto Vision</p>
+              <p class="speaker-card__topic">Воркшоп с Claude Code</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="tickets" id="tickets">
+        <div class="container">
+          <h2 class="tickets__title">Билеты</h2>
+          <ul class="tickets__list">
+            <li class="price-card squircle">
+              <h3 class="price-card__name">Слушатель</h3>
+              <p class="price-card__price">1&nbsp;500&nbsp;₽</p>
+              <p class="price-card__includes">онлайн-трансляция, записи на 3 месяца</p>
+              <button class="button button--secondary squircle" type="button">Купить</button>
+            </li>
+            <li class="price-card price-card--inverse squircle">
+              <span class="tag tag--inverse-accent squircle">Чаще всего берут</span>
+              <h3 class="price-card__name">Участник круга</h3>
+              <p class="price-card__price">4&nbsp;900&nbsp;₽</p>
+              <p class="price-card__includes">место в зале, обед, чай с печеньем, записи</p>
+              <button class="button button--inverse-primary squircle" type="button">Купить</button>
+            </li>
+            <li class="price-card squircle">
+              <h3 class="price-card__name">С наставником</h3>
+              <p class="price-card__price">7&nbsp;900&nbsp;₽</p>
+              <p class="price-card__includes">всё из «Участника» и воркшоп Дениса Кравца, 30 мест</p>
+              <button class="button button--secondary squircle" type="button">Купить</button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <div class="container">
+          <h2 class="faq__title">Вопросы</h2>
+          <div class="faq__list">
+            <details class="faq-item">
+              <summary class="faq-item__question">Это правда анонимно?</summary>
+              <p class="faq-item__answer">Почти. На бейджах только имена, а что сказано в кругу, остаётся в кругу. Кроме записей докладов.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question">Будет ли запись?</summary>
+              <p class="faq-item__answer">Да, для всех билетов. Откроется через неделю после митапа и будет доступна три месяца.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question">Можно вернуть билет?</summary>
+              <p class="faq-item__answer">До 5 декабря — полная сумма. После — можно передать билет другому человеку.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question">Что взять на воркшоп?</summary>
+              <p class="faq-item__answer">Ноутбук с установленным Claude Code. Инструкцию пришлём за неделю.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-item__question">Удобно ли добраться на коляске?</summary>
+              <p class="faq-item__answer">В «Цехе 4» вход без ступеней, лифт на второй этаж и адаптированный туалет.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__subscribe">
+          <h2 class="footer__title">Сообщим, когда соберёмся снова</h2>
+          <form class="footer__form" novalidate>
+            <label class="input input--inverse-neutral">
+              <input class="input__control squircle" type="email" name="email" placeholder="Почта" aria-label="Почта" autocomplete="email">
+              <span class="input__message" hidden>Проверьте адрес — кажется, в нём опечатка</span>
+            </label>
+            <button class="button button--inverse-primary squircle" type="submit">Подписаться</button>
+          </form>
+          <p class="footer__done" role="status" hidden>Готово, вы в кругу</p>
+        </div>
+        <ul class="footer__contacts">
+          <li><a class="link link--inverse" href="mailto:hello@sad.example">hello@sad.example</a></li>
+          <li><a class="link link--inverse" href="#">Телеграм-канал</a></li>
+        </ul>
+        <p class="footer__copyright">© 2026 Сообщество анонимных дизайнеров. Митап вымышленный, собран на стриме</p>
+      </div>
+    </footer>
+
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

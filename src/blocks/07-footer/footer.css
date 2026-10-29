@@ -1,0 +1,76 @@
+/* @title Подвал
+   @description Подписка на новости, контакты и копирайт.
+   @surface --surface-inverse-bg-primary */
+
+.footer {
+  background-color: var(--surface-inverse-bg-primary);
+  color: var(--text-inverse-neutral-primary);
+}
+
+.footer > .container {
+  padding-block: var(--space-2xl); /* отступ подвала сверху и снизу */
+}
+
+.footer__subscribe {
+  grid-column: 1 / span 6;
+}
+
+.footer__title {
+  font-family: var(--font-h3-family); /* текстовый стиль заголовка подписки */
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-leading);
+  font-weight: var(--font-h3-weight);
+  letter-spacing: var(--font-h3-tracking);
+}
+
+.footer__form {
+  display: flex;
+  align-items: flex-start;
+  margin-block-start: var(--space-m); /* отступ формы от заголовка */
+  column-gap: var(--space-s); /* промежуток между полем и кнопкой */
+}
+
+.footer__form[hidden] {
+  display: none;
+}
+
+.footer__form .input {
+  flex: 1;
+}
+
+.footer__form .button {
+  flex: none;
+}
+
+.footer__done {
+  margin-block-start: var(--space-m); /* отступ сообщения от заголовка */
+  font-family: var(--font-body-family); /* текстовый стиль сообщения формы */
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
+}
+
+.footer__contacts {
+  grid-column: 9 / span 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  list-style: none;
+  row-gap: var(--space-s); /* промежуток между контактами */
+}
+
+.footer__contacts .link {
+  flex: none;
+}
+
+.footer__copyright {
+  grid-column: 1 / -1;
+  margin-block-start: var(--space-3xl); /* отступ копирайта от подписки и контактов */
+  font-family: var(--font-caption-family); /* текстовый стиль копирайта */
+  font-size: var(--font-caption-size);
+  line-height: var(--font-caption-leading);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: var(--font-caption-tracking);
+}

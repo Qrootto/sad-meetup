@@ -4,11 +4,11 @@
 import primitivesCss from '../src/tokens/primitives.css?raw';
 import tokensCss from '../src/tokens/tokens.css?raw';
 import baseCss from '../src/base.css?raw';
+import landingHtml from '../index.html?raw';
 
 const componentCss = import.meta.glob('../src/components/*.css', { query: '?raw', import: 'default', eager: true });
 const componentDemo = import.meta.glob('../src/components/*.demo.js', { import: 'default', eager: true });
 const blockCss = import.meta.glob('../src/blocks/*/*.css', { query: '?raw', import: 'default', eager: true });
-const blockDemo = import.meta.glob('../src/blocks/*/*.demo.js', { import: 'default', eager: true });
 
 export const FILES = {
   primitives: 'src/tokens/primitives.css',
@@ -178,7 +178,9 @@ function buildUnit({ key, css, demo, kind, block }) {
     .filter((r) => r.decls.some((d) => d.varName));
   const variants = [];
   for (const r of rules) if (r.variant && !variants.includes(r.variant)) variants.push(r.variant);
-  if (!variants.length) variants.push('');
+  // Базовый класс со своими цветами — отдельный вариант (например, обычная карточка тарифа рядом с inverse).
+  const baseHasColor = rules.some((r) => r.variant === null && r.decls.some((d) => d.varName && tokenKind(d.varName) === 'color'));
+  if (!variants.length || baseHasColor) variants.unshift('');
   return {
     id,
     kind,
@@ -186,6 +188,7 @@ function buildUnit({ key, css, demo, kind, block }) {
     file: relPath(key),
     title: header.title || id,
     description: header.description || '',
+    surface: header.surface || null,
     rules,
     variants,
     demo: demo || {},
@@ -210,7 +213,7 @@ export const blocks = [];
     const folder = key.split('/').slice(-2)[0];
     if (!byFolder.has(folder)) byFolder.set(folder, []);
     byFolder.get(folder).push(
-      buildUnit({ key, css, demo: blockDemo[key.replace(/\.css$/, '.demo.js')], kind: 'element', block: folder }),
+      buildUnit({ key, css, kind: 'element', block: folder }),
     );
   }
   for (const folder of [...byFolder.keys()].sort()) {
@@ -220,6 +223,35 @@ export const blocks = [];
     main.kind = 'block';
     blocks.push({ folder, main, elements: units.filter((u) => u !== main) });
   }
+}
+
+// ---------- Превью блоков и элементов — из разметки лендинга ----------
+
+const landingDoc = new DOMParser().parseFromString(landingHtml, 'text/html');
+
+// Блок — его корень целиком. Элемент — первое вхождение варианта, обёрнутое в
+// пустые копии предков до корня блока: так работают сетка (subgrid) и селекторы блока.
+export function landingPreview(unit, variant) {
+  if (unit.kind === 'block') {
+    const el = landingDoc.querySelector(`.${unit.id}`);
+    return el ? { html: el.outerHTML, crop: false } : null;
+  }
+  const all = [...landingDoc.querySelectorAll(`.${unit.id}`)];
+  const el = variant
+    ? landingDoc.querySelector(`.${unit.id}--${variant}`)
+    : all.find((e) => ![...e.classList].some((c) => c.startsWith(`${unit.id}--`))) || all[0];
+  if (!el) return null;
+  const blockRoot = blocks.find((b) => b.folder === unit.block)?.main.id;
+  let node = el.cloneNode(true);
+  node.setAttribute('data-preview-target', '');
+  for (let a = el.parentElement; a && a !== landingDoc.body; a = a.parentElement) {
+    const shell = a.cloneNode(false);
+    shell.removeAttribute('id');
+    shell.append(node);
+    node = shell;
+    if (blockRoot && a.classList.contains(blockRoot)) break;
+  }
+  return { html: node.outerHTML, crop: true };
 }
 
 export const allUnits = [...components, ...blocks.flatMap((b) => [b.main, ...b.elements])];

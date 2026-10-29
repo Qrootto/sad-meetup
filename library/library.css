@@ -342,12 +342,27 @@
   background-color: var(--surface-inverse-bg-primary);
   color: var(--text-inverse-neutral-primary);
 }
-.lib-scene--wide {
+.lib-scene--page {
   display: block;
-  overflow-x: auto;
+  padding: 0;
 }
-.lib-scene--wide .container {
-  inline-size: var(--width-container);
+
+/* Кадр широкого превью: размер и масштаб считает layoutFrames() в main.js */
+.lib-frame {
+  position: relative;
+  overflow: hidden;
+}
+.lib-frame__page {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform-origin: 0 0;
+  color: var(--text-neutral-primary);
+  font-family: var(--font-body-family);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-leading);
+  font-weight: var(--font-body-weight);
+  letter-spacing: var(--font-body-tracking);
 }
 .lib-grid-column {
   block-size: var(--size-l);
@@ -355,6 +370,7 @@
 }
 .lib-states {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: var(--space-xl);
 }
