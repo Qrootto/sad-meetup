@@ -18,8 +18,12 @@ export default defineConfig({
   plugins: [
     {
       name: 'library-redirect',
-      configureServer: (server) => server.middlewares.use(libraryRedirect),
-      configurePreviewServer: (server) => server.middlewares.use(libraryRedirect),
+      configureServer(server) {
+        server.middlewares.use(libraryRedirect);
+      },
+      configurePreviewServer(server) {
+        server.middlewares.use(libraryRedirect);
+      },
     },
   ],
   build: {
