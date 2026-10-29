@@ -23,7 +23,7 @@
 .header__nav {
   grid-column: 4 / span 6;
   display: flex;
-  column-gap: var(--space-l); /* промежуток между пунктами меню */
+  column-gap: var(--space-2xl); /* промежуток между пунктами меню */
 }
 
 .header__nav .nav-item {
