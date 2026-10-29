@@ -6,21 +6,28 @@
 
 ## Задача и ветка
 
-Задача 2 — элементы, блоки, лендинг (2026-10-29). Закрыта, влита в `main`, ветка удалена.
+Правки из витрины (2026-10-29). Закрыта, влита в `main` fast-forward, ветка
+`fix/library-edits` удалена.
 
 ## Где остановились
 
-- Элементы: schedule-row, speaker-card, price-card, faq-item, link.
-- Блоки: header (внутри hero), hero (пустой canvas под шейдер), program,
-  speakers, tickets, faq, footer (подписка с проверкой адреса).
-- `index.html` — лендинг из компонентов и блоков; fixOrphans().
-- Витрина: группа «Блоки» с элементами, превью из `index.html` с масштабом,
-  фон сцены из `@surface`.
-- Проверено скриптом на prod-preview и dev: консоль чистая, сетка, выравнивание.
+- Coral темнее: `#FF8C69` → `#F47C57`. Задевает и ошибку поля в подвале.
+- Главная кнопка на тёмном (`inverse-primary`) в default — Coral: фон и обводка.
+  Hovered (Paper) и active (Slate) не трогали.
+- Меню шапки: промежуток `--space-l` → `--space-2xl`.
+- Проверено: dev и prod-preview совпадают, консоль чистая.
+- `.claude/launch.json` (конфиг dev-сервера для панели браузера) — не в git,
+  решение не принято.
 
 ## Следующий шаг
 
-- Шейдер в хиро (BACKLOG.md).
+- Шейдер в хиро (BACKLOG.md); материалы — `~/Desktop/stream/shader/`.
+
+## Не проверено вживую
+
+- Hover кнопок (вход мгновенно, уход 160 ms), hover-suppression, кольца фокуса.
+- Пипетка цвета и подсветка токенов в витрине.
+- Onest: fonttools и живой Windows (BACKLOG, техдолг).
 
 ## Открытые вопросы
 
@@ -28,10 +35,10 @@
 
 ## Последние коммиты
 
+- `506f759` style(header): widen gap between nav items to space-2xl
+- `a9d3d72` style(tokens): darken coral and make inverse primary button coral
+- `d0d7929` docs(session): landing task closed and merged
 - `fbf091c` feat(landing): add block elements, landing blocks and assembled landing page
-- `853b48b` fix(vite): keep library redirect hooks from returning the middleware
-- `fc431bf` docs(session): design system task closed and merged
-- `911288f` feat(design-system): add primitives, tokens, scales, text styles, base components and library editor
 
 ## Решения
 
