@@ -6,18 +6,18 @@
 
 ## Задача и ветка
 
-Правки из витрины (2026-10-29). Закрыта, влита в `main` fast-forward, ветка
-`fix/library-edits` удалена.
+Выкладка на GitHub Pages (2026-10-30). Закрыта, влита в `main` fast-forward,
+ветка `chore/github-pages` удалена, `main` запушен в `origin`.
 
 ## Где остановились
 
-- Coral темнее: `#FF8C69` → `#F47C57`. Задевает и ошибку поля в подвале.
-- Главная кнопка на тёмном (`inverse-primary`) в default — Coral: фон и обводка.
-  Hovered (Paper) и active (Slate) не трогали.
-- Меню шапки: промежуток `--space-l` → `--space-2xl`.
-- Проверено: dev и prod-preview совпадают, консоль чистая.
-- `.claude/launch.json` (конфиг dev-сервера для панели браузера) — не в git,
-  решение не принято.
+- Репозиторий: https://github.com/Qrootto/sad-meetup (публичный).
+- Лендинг: https://qrootto.github.io/sad-meetup/
+- Витрина: https://qrootto.github.io/sad-meetup/library/
+- Push в `main` = обновление публичного сайта (DEPLOY.md).
+- CLAUDE.md всё ещё говорит «без GitHub» — оставлено сознательно, исключение
+  в DECISIONS.md.
+- `.claude/launch.json` (конфиг dev-сервера для панели) — не в git, решения нет.
 
 ## Следующий шаг
 
@@ -35,10 +35,10 @@
 
 ## Последние коммиты
 
-- `506f759` style(header): widen gap between nav items to space-2xl
-- `a9d3d72` style(tokens): darken coral and make inverse primary button coral
-- `d0d7929` docs(session): landing task closed and merged
-- `fbf091c` feat(landing): add block elements, landing blocks and assembled landing page
+- `57355a0` docs(deploy): describe GitHub Pages setup and record the exception
+- `bd520cf` chore(deploy): build under /sad-meetup/ and deploy to GitHub Pages via Actions
+- `57a9544` fix(library): prefix root asset paths in previews with base url
+- `21fa8c8` docs(session): library edits merged
 
 ## Решения
 
