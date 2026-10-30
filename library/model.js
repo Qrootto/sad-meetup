@@ -229,6 +229,12 @@ export const blocks = [];
 
 const landingDoc = new DOMParser().parseFromString(landingHtml, 'text/html');
 
+// ?raw приходит без обработки Vite: корневые пути из public/ сами не получают base
+// (на GitHub Pages сайт лежит в подпапке).
+landingDoc.querySelectorAll('[src^="/"]').forEach((el) => {
+  el.setAttribute('src', import.meta.env.BASE_URL + el.getAttribute('src').slice(1));
+});
+
 // Блок — его корень целиком. Элемент — первое вхождение варианта, обёрнутое в
 // пустые копии предков до корня блока: так работают сетка (subgrid) и селекторы блока.
 export function landingPreview(unit, variant) {
