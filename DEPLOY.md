@@ -4,49 +4,31 @@
 
 ## Где живёт прод
 
-<!-- Заполняется в момент первого деплоя.
-     Что указать:
-     - Платформа хостинга (Cloudflare Pages, Vercel, Netlify, GitHub Pages, ...)
-     - Прод-URL
-     - Имя репо/сайта на платформе (если отличается от имени проекта)
-     - Связанные домены, если есть кастомный
-     Пример:
-     - Платформа: Cloudflare Pages
-     - Прод-URL: https://example.com
-     - Имя сайта на CF: chronos-5fa
-     - Кастомный домен: example.com через DNS у регистратора Reg.ru -->
+- Платформа: GitHub Pages.
+- Репозиторий: `Qrootto/sad-meetup`, публичный (Pages на бесплатном плане — только так).
+- Лендинг: https://qrootto.github.io/sad-meetup/
+- Витрина: https://qrootto.github.io/sad-meetup/library/
+- Кастомного домена нет.
 
 ## Как деплоить
 
-<!-- Заполняется при настройке деплоя.
-     Что указать:
-     - Какая ветка деплоится (обычно main)
-     - Триггер деплоя (push в ветку, ручной)
-     - Build command, output directory
-     - Переменные окружения (имена, не значения)
-     Пример:
-     - Ветка: main
-     - Триггер: автоматически при push в main
-     - Build command: npm run build
-     - Output directory: dist
-     - Env vars: VITE_API_URL (значение в Cloudflare Pages → Settings) -->
+- Ветка: `main`.
+- Триггер: автоматически при push в `main` (`.github/workflows/pages.yml`);
+  вручную — Actions → Deploy to GitHub Pages → Run workflow.
+- Build command: `npm ci && npm run build`, Node 20. Output directory: `dist`.
+- Env vars: нет.
+- Push в `main` = обновление публичного сайта, поэтому проверки перед вливанием
+  (prod-preview и dev) обязательны.
 
 ## Особенности и лимиты тарифа
 
-<!-- Заполняется когда что-то всплывает.
-     Что указать:
-     - Build minutes per month (если ограничен)
-     - Bandwidth limits
-     - Особенности конкретного хостинга, важные для проекта
-     Пример (из Past Simple):
-     - Cloudflare Pages: build minutes неограниченны на бесплатном тарифе.
-     - Custom redirects настраиваются через файл `_redirects` в корне `dist/`. -->
+- Сайт лежит в подпапке `/sad-meetup/`: `base` в `vite.config.js` (только для
+  build и preview; dev — на `/`). Локальный prod-preview:
+  `npm run build && npx vite preview` → http://localhost:5191/sad-meetup/
+- Корневые пути (`/speakers/…`) в `index.html` Vite переписывает сам; в витрине
+  `index.html` приходит через `?raw` — там префикс ставит `library/model.js`.
+- `/library` без слэша Pages сам редиректит на `/library/`.
 
 ## История миграций
 
-<!-- Заполняется когда меняется хостинг или конфигурация деплоя.
-     Каждая миграция — отдельным блоком с датой и причиной.
-     Пример:
-     ## 2026-05-04 — Переезд Netlify → Cloudflare Pages
-     **Причина:** на Netlify закончились credits на бесплатном тарифе.
-     **Что сделано:** перенесли репо, перенастроили DNS, домен past-simple.ru теперь смотрит на Cloudflare. -->
+- 2026-10-30 — первая выкладка на GitHub Pages; до этого проект был только локальным.
